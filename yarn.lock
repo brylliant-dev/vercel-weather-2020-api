@@ -2771,6 +2771,7 @@ __metadata:
     eslint-import-resolver-typescript: "npm:^3.6.1"
     eslint-plugin-import: "npm:^2.29.0"
     express: "npm:^4.18.2"
+    express-rate-limit: "npm:^7.1.5"
     helmet: "npm:^7.1.0"
     jest: "npm:^29.7.0"
     morgan: "npm:^1.10.0"
@@ -2781,6 +2782,15 @@ __metadata:
     typescript: "npm:^5.3.2"
   languageName: unknown
   linkType: soft
+
+"express-rate-limit@npm:^7.1.5":
+  version: 7.1.5
+  resolution: "express-rate-limit@npm:7.1.5"
+  peerDependencies:
+    express: 4 || 5 || ^5.0.0-beta.1
+  checksum: 10c0/547d5e36113fa71e923a887a5fe90b0af2dbd30260ed6604c31d19b38e4c18e1cdb288b5e3cf131a211632ea715b7e2ba419d7adbfa915db85c52e73f1514932
+  languageName: node
+  linkType: hard
 
 "express@npm:^4.18.2":
   version: 4.18.2
