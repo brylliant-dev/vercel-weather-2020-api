@@ -35,9 +35,6 @@ app.use('/api/v1', api);
 app.use('/api/weather', async (req, res) => {
   const apiUrl = req.body.apiUrl;
   const apiKey = process.env.WEATHER_API_KEY || '';
-  console.log('--this is apiKey', apiKey);
-  console.log('--this is apiUrl', apiUrl);
-  console.log('--this is req.body', JSON.stringify(req.body));
   const result = await fetch(apiUrl, {
     method: 'GET',
     headers: {
