@@ -8,16 +8,16 @@ import api from './api';
 import MessageResponse from './interfaces/MessageResponse';
 
 require('dotenv').config();
-const rateLimit = require('express-rate-limit')
+const rateLimit = require('express-rate-limit');
 const app = express();
-const minutes = 10 // 10 minutes
+const minutes = 10; // 10 minutes
 const limiter = rateLimit({
   windowMs: minutes * 60 * 1000,
-  max: 10
-})
+  max: 10,
+});
 
-app.use(limiter)
-app.set('trust proxy', 1)
+app.use(limiter);
+app.set('trust proxy', 1);
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(cors());
@@ -32,18 +32,21 @@ app.get<{}, MessageResponse>('/', (req, res) => {
 app.use('/api/v1', api);
 
 
-app.use('/api/weather',  async(req, res) => {
-const apiUrl = req.body.apiUrl;
-const apiKey = process.env.WEATHER_API_KEY || ''
-const result = await fetch(apiUrl, {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-    "X-API-Key": apiKey,
-  },
-})
-  .then(async (result) => result.json().then(({ data }) => data))
-  .catch((err) => console.error(err));
+app.use('/api/weather', async (req, res) => {
+  const apiUrl = req.body.apiUrl;
+  const apiKey = process.env.WEATHER_API_KEY || '';
+  console.log('--this is apiKey', apiKey);
+  console.log('--this is apiUrl', apiUrl);
+  console.log('--this is req.body', JSON.stringify(req.body));
+  const result = await fetch(apiUrl, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-API-Key': apiKey,
+    },
+  })
+    .then(async (jsonResult) => jsonResult.json().then(({ data }) => data))
+    .catch((err) => console.error(err));
 
   res.json(result);
 });
